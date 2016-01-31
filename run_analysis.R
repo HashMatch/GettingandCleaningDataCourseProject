@@ -1,13 +1,12 @@
 ## Default file and data Variables
 wkDir <- "."                            # Working Directory
-dwnFileName <- "GalaxyData.zip"        # Downloaded file name
-dwnlFolder <- "./Download/Samsung"     # Download folder path
+dwnFileName <- "GalaxyData.zip"         # Downloaded file name
+dwnlFolder <- "./Download/Samsung"      # Download folder path
 
 ## Constants
 dataURL <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
 fileMD5 <- "d29710c9530a31f303801b6bc34bd895"
-#TempFolder <- file.path(dwnlFolder, "Data", fsep = "/")
-TempFolder <- tempdir()
+TempFolder <- file.path(dwnlFolder, "Data", fsep = "/")
 
 ## Initialise defaults
 setwd(wkDir)
@@ -108,9 +107,31 @@ TrainTestData <- merge(TrainTestData, Activities, by = "activityid")
 # Objective 4
 # Appropriately labels the data set with descriptive variable names
 TrainTestData <- select(TrainTestData, -activityid)
+colnames(TrainTestData) <- gsub(pattern = "Freq()", replacement = "Frequency", x = colnames(TrainTestData), fixed = TRUE)
+colnames(TrainTestData) <- gsub(pattern = "mean()", replacement = "Mean", x = colnames(TrainTestData), fixed = TRUE)
+colnames(TrainTestData) <- gsub(pattern = "std()", replacement = "StandardDeviation", x = colnames(TrainTestData), fixed = TRUE)
+colnames(TrainTestData) <- gsub(pattern = "(t", replacement = "time", x = colnames(TrainTestData), fixed = TRUE)
+colnames(TrainTestData) <- gsub(pattern = "Acc", replacement = "Accelerate", x = colnames(TrainTestData), fixed = TRUE)
+colnames(TrainTestData) <- gsub(pattern = "-Z", replacement = "Zaxis", x = colnames(TrainTestData), fixed = TRUE)
+colnames(TrainTestData) <- gsub(pattern = "(Z", replacement = "Zaxis", x = colnames(TrainTestData), fixed = TRUE)
+colnames(TrainTestData) <- gsub(pattern = "-X", replacement = "Xaxis", x = colnames(TrainTestData), fixed = TRUE)
+colnames(TrainTestData) <- gsub(pattern = "(X", replacement = "Xaxis", x = colnames(TrainTestData), fixed = TRUE)
+colnames(TrainTestData) <- gsub(pattern = "-Y", replacement = "Yaxis", x = colnames(TrainTestData), fixed = TRUE)
+colnames(TrainTestData) <- gsub(pattern = "(Y", replacement = "Yaxis", x = colnames(TrainTestData), fixed = TRUE)
+colnames(TrainTestData) <- gsub(pattern = "Mag", replacement = "Magnitude", x = colnames(TrainTestData), fixed = TRUE)
+colnames(TrainTestData) <- gsub(pattern = ",", replacement = "", x = colnames(TrainTestData), fixed = TRUE)
+colnames(TrainTestData) <- gsub(pattern = "-", replacement = "", x = colnames(TrainTestData), fixed = TRUE)
+colnames(TrainTestData) <- gsub(pattern = ")", replacement = "", x = colnames(TrainTestData), fixed = TRUE)
+colnames(TrainTestData) <- gsub(pattern = "bodybody", replacement = "body", x = colnames(TrainTestData), fixed = TRUE)
+colnames(TrainTestData) <- gsub(pattern = "^[t]", replacement = "time", x = colnames(TrainTestData), fixed = FALSE)
+colnames(TrainTestData) <- gsub(pattern = "^[f]", replacement = "rate", x = colnames(TrainTestData), fixed = FALSE)
+colnames(TrainTestData) <- tolower(colnames(TrainTestData))
 
 # Objective 5
 # From the data set in step 4, creates a second, independent tidy data set with the 
 # average of each variable for each activity and each subject.
 DataOut = as.data.table(TrainTestData %>% group_by(subject, activity) %>% summarise_each(funs( mean )))
 write.table(DataOut, file = "TidyDataSet.txt", row.names = FALSE, sep = "|")
+
+# Cleanup
+unlink(TempFolder, recursive = TRUE)

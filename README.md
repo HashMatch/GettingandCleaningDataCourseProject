@@ -20,17 +20,14 @@ Alternatively the derived dataset file **“TidyDataSet.txt”** is also include
 
 #### Example:
 1. Open **R**
-
 2. Change the **working directory** of your R environment to the folder where the **“run_analysis.R”** script was saved.
 ```R
 setwd("C:/Temp/Tidy")
 ``` 
-
-3. Execute **“run_analysis.R”** script
+3. Execute **R** script **“run_analysis.R”** 
 ```R 
 source("run_analysis.R")
 ```
-
 4. **Optional:** View the created dataset structure
 ```R 
 str(fread("C:/Temp/Tidy/TidyDataSet.txt", sep = "|"))
@@ -38,7 +35,7 @@ str(fread("C:/Temp/Tidy/TidyDataSet.txt", sep = "|"))
 
 #### Additional Comments & Information
 
-This script was developed and tested on with the below mentioned operating system and R version only.
+This script was developed and tested with the below mentioned operating system and R version only.
 
 | Description | Value |
 |  :-- | :-- | 
