@@ -31,7 +31,7 @@ source("run_analysis.R")
 4. **Optional:** View the created dataset structure
 ```R 
 library(data.table)
-str(fread("C:/Temp/Tidy/TidyDataSet.txt", sep = "|"))
+str(fread("C:/Temp/Tidy/TidyDataSet.txt"))
 ```
 
 #### Additional Comments & Information
