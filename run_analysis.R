@@ -94,7 +94,7 @@ TrainTestData <- TrainTestData[, !duplicated(colnames(TrainTestData))]
 
 # Objective 2
 # Extracts only the measurements on the mean and standard deviation for each measurement.
-TrainTestData <- TrainTestData[ ,c(grep("std()|mean()",
+TrainTestData <- TrainTestData[ ,c(grep("std()|mean()|angle(.*)",
                                         names(TrainTestData),
                                         value = TRUE),
                                     "activityid",
