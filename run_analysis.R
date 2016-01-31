@@ -131,7 +131,7 @@ colnames(TrainTestData) <- tolower(colnames(TrainTestData))
 # From the data set in step 4, creates a second, independent tidy data set with the 
 # average of each variable for each activity and each subject.
 DataOut = as.data.table(TrainTestData %>% group_by(subject, activity) %>% summarise_each(funs( mean )))
-write.table(DataOut, file = "TidyDataSet.txt", row.names = FALSE, sep = "|")
+write.table(DataOut, file = "TidyDataSet.txt", row.names = FALSE)
 
 # Cleanup
 unlink(TempFolder, recursive = TRUE)

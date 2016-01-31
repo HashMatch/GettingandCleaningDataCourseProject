@@ -11,7 +11,6 @@ Assignment : Getting and Cleaning Data Course Project
 | Description | Value |
 | :-- | :-- |
 | Tidy Dataset file name | TidyDataSet.txt |
-| Tidy Dataset Data delimiter | pipe ("|") |
 | Estimated dataset memory size | 135 kB |
 | Data Source web site | ["http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones#"]("http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones#"") |
 | Downloaded Data Source URL | ["https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"]("https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"") |
