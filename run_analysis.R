@@ -94,7 +94,7 @@ TrainTestData <- TrainTestData[, !duplicated(colnames(TrainTestData))]
 
 # Objective 2
 # Extracts only the measurements on the mean and standard deviation for each measurement.
-TrainTestData <- TrainTestData[ ,c(grep("std()|mean()|angle(.*)",
+TrainTestData <- TrainTestData[ ,c(grep("std()|mean()",
                                         names(TrainTestData),
                                         value = TRUE),
                                     "activityid",
@@ -122,9 +122,10 @@ colnames(TrainTestData) <- gsub(pattern = "Mag", replacement = "Magnitude", x = 
 colnames(TrainTestData) <- gsub(pattern = ",", replacement = "", x = colnames(TrainTestData), fixed = TRUE)
 colnames(TrainTestData) <- gsub(pattern = "-", replacement = "", x = colnames(TrainTestData), fixed = TRUE)
 colnames(TrainTestData) <- gsub(pattern = ")", replacement = "", x = colnames(TrainTestData), fixed = TRUE)
-colnames(TrainTestData) <- gsub(pattern = "bodybody", replacement = "body", x = colnames(TrainTestData), fixed = TRUE)
 colnames(TrainTestData) <- gsub(pattern = "^[t]", replacement = "time", x = colnames(TrainTestData), fixed = FALSE)
 colnames(TrainTestData) <- gsub(pattern = "^[f]", replacement = "rate", x = colnames(TrainTestData), fixed = FALSE)
+colnames(TrainTestData) <- gsub(pattern = "([Bb]ody[Bb]ody|[Bb]ody)", replacement = "Body", x = colnames(TrainTestData), fixed = FALSE)
+
 colnames(TrainTestData) <- tolower(colnames(TrainTestData))
 
 # Objective 5
